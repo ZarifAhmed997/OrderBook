@@ -45,7 +45,7 @@ src/         Core matching engine implementation
 apps/        CLI and benchmark executables
 tests/       Correctness and invariant tests
 scripts/     Analysis and plotting tools (Python)
-docs/        Design notes and future improvements
+data/        Example csv files for data plotting and testing
 </pre>
 
 <h2>Build</h2>
@@ -71,8 +71,8 @@ The benchmark driver generates randomized order flow and reports throughput.
 
 <pre>
 ops: 10,000,000
-time: 1.8s
-throughput: ~5.5M ops/sec
+time: 1.5774s
+throughput: ~6.3M ops/sec
 </pre>
 
 <p><em>(Results are machine-dependent.)</em></p>
@@ -101,7 +101,6 @@ ctest --test-dir build
 <h2>Future Work</h2>
 <ul>
   <li>Replace <code>std::map</code> with array-based or flat-tree structures</li>
-  <li>Add latency measurement (p50 / p95 / p99)</li>
   <li>Support L2 depth snapshots</li>
   <li>Deterministic replay from recorded event streams</li>
   <li>Multi-threaded matching and ingestion</li>
