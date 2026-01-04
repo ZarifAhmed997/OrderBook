@@ -1,8 +1,7 @@
-#include <limitBook.hpp>
-#include <types.hpp>
+#include <orderbook.hpp>
 #include <iostream>
 
-void main() {
+int main() {
     OrderBook ob;
     string command;
 
@@ -184,4 +183,6 @@ void main() {
             cout << "Invalid command. Please try again." << endl;
         }
     }
+
+    return 0;
 }

@@ -4,7 +4,7 @@
 #include <fstream>
 #include <random>
 
-#include <limitBook.hpp>
+#include <orderbook.hpp>
 
 
 
@@ -116,7 +116,7 @@ vector<Trade> massiveTestingAgent(const LoadConfig& cfg) {
     return ob.getTrades();
 }
 
-void main() {
+int main() {
     LoadConfig cfg;
     cfg.ops = 10000000;
     cfg.pLimit = 0.8;
@@ -132,15 +132,29 @@ void main() {
 
     vector<Trade> trades = massiveTestingAgent(cfg);
 
-    string csvFile = "output.csv";
-    ofstream f(csvFile);
+    string csvLatency = "data/example_latency.csv";
+    string csvData = "data/example_data.csv";
+    ofstream f(csvData);
+    ofstream l(csvLatency);
+
+    if (!l.is_open()) {
+        cerr << "Error opening file: " << csvLatency << "\n";
+        return 0;  
+    } 
+
+    else l << "Time,NumOfOrders\n";
 
     if (!f.is_open()) {
-        cerr << "Error opening file: " << csvFile << "\n";
-        return;
+        cerr << "Error opening file: " << csvData << "\n";
+        return 0;
     }
 
     else f << "Price,Volume,Time\n";
 
-    for (const auto& trade : trades) f << trade.price << "," << trade.quantity << "," << trade.ts << "\n";
+    for (int i = 0; i < trades.size(); i++) {
+        f << trades[i].price << "," << trades[i].quantity << "," << trades[i].ts << "\n";
+        l << trades[i].ts << "," << i << "\n";
+    }
+
+    return 0;
 }

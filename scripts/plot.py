@@ -7,17 +7,19 @@ def round_to_1sf(x):
     if x == 0: return 0
     return round(x, -int(math.floor(math.log10(abs(x)))))
 
-df = pd.read_csv("OrderBook/output.csv")
+df = pd.read_csv("data/example_data.csv")
 initTime = df.iloc[0]['Time']
 df['Time'] -= initTime
 df['Time'] /= 1000
 df['Time'] = pd.to_datetime(df['Time'], unit='ms')
 
-freq = '10ms' '''
-              Frequency at which the data is taken into account, i.e. for 10ms, 
-              everything in between each 10ms is not taken into account except 
-              the last trade in that 10ms period.
-              '''
+freq = '10ms' 
+
+'''
+Frequency at which the data is taken into account, i.e. for 10ms, 
+everything in between each 10ms is not taken into account except 
+the last trade in that 10ms period.
+'''
 
 
 df = df.set_index('Time')
