@@ -118,7 +118,7 @@ vector<Trade> massiveTestingAgent(const LoadConfig& cfg) {
 
 int main() {
     LoadConfig cfg;
-    cfg.ops = 10000000;
+    cfg.ops = 3000000;
     cfg.pLimit = 0.8;
     cfg.pBuy = 0.5;
     cfg.startMid = 10000;
